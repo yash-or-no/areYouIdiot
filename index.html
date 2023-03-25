@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You Dumb?</title>
+
+    <style>
+        .content__actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 2rem;
+  }
+
+  body{
+    background-color: cadetblue;
+  }
+  
+  .content__button {
+    text-transform: uppercase;
+    border: 0;
+    border-radius: .5rem;
+    background: #f5f5f5;
+    color: #020202;
+    font-size: 1rem;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  #fool{
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 575.98px) {
+    .content__button {
+      padding: 1rem 2.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 575.98px) {
+    .content {
+      width: 100%;
+    }
+  }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1 class="content__title" style="text-align: center;">Are you dumb?</h1>
+        <div class="content__actions">
+            <button id="maybe-i-am" class="content__button" onclick="iamdumb()">yes</button>
+            <button id="are-you-sure" class="content__button" onclick="moveElement(this.id)">no</button>
+        </div>
+        <div id="fool"></div>
+    </div>
+</body>
+<script>
+    const moveElement = (elementId) => {
+	const button = document.getElementById(elementId);
+	const { x, y } = getCoordinates();
+
+	placeElement(x, y, button);
+};
+
+const getCoordinates = () => {
+	let x = parseInt(Math.ceil(Math.random() * 100 + Math.random() * 400));
+	let y = parseInt(Math.ceil(Math.random() * 100 + Math.random() * 500));
+
+	return { x, y };
+};
+
+const placeElement = (x, y, element) => {
+	element.style.position = 'absolute';
+	element.style.left = `${x}px`;
+	element.style.top = `${y}px`;
+};
+
+
+const iamdumb = () => {
+    const content = document.querySelector('.content')
+    const buttons = document.querySelectorAll('.content__button');
+
+    buttons.forEach(btn => {
+        btn.style.pointerEvents = 'none'
+    });
+	document.getElementById("fool").innerHTML="<h1>Idiot! I knew it 😂</h1>"
+    content.append('I knew it 😂')
+}
+</script>
+</html>
